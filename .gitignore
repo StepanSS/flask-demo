@@ -130,3 +130,7 @@ dmypy.json
 
 # ide
 .vscode
+
+# tmp files
+tmp/
+uploads/

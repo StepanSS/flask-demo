@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload CSV File to parse</title>
+</head>
+<body> 
+    <header>
+
+    </header> 
+    
+    <main>
+        <div class="container">
+            <h1>Upload new File</h1>
+            <form method=post enctype=multipart/form-data>
+            <input type=file name=file>
+            <input type=submit value="Upload and Parse">
+            </form>
+        </div>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class=flashes>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        
+        <div class="container">
+            <h2>Parsed data will appear here</h2>
+
+            {% if data %}
+                
+                {% for row in data %}
+                    {% for key, value in row.items() %}
+                    <p>
+                        <strong>{{key}}:</strong>
+                        <span>{{value}}</span>
+                    </p>
+                    {% endfor %}
+                {% endfor %}
+
+            {% else %}
+                <p>Waiting for data... </p>
+            {% endif %}
+
+        </div>
+    </main>
+    
+</body>
+</html>
